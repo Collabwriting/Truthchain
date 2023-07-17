@@ -1,7 +1,6 @@
+<img width="250px" src="https://github.com/Collabwriting/Truthchain/assets/9627557/a70ccb1e-4fc1-4c12-a285-29d26585c4bd"/>
+
 # Truthchain: Fighting Misinformation with Decentralized Truth Verification
-
-![image](https://github.com/Collabwriting/Truthchain/assets/9627557/c83b5f0a-b141-413e-902b-a7cbec6ffb21)
-
 
 Truthchain is an open-source project dedicated to combating misinformation and promoting truth in an increasingly digital and interconnected world. By harnessing the power of blockchain technology, data validators, and user contributions, Truthchain aims to create a decentralized platform where users can collect, verify, and store data, ensuring its authenticity and credibility.
 
@@ -15,11 +14,11 @@ Truthchain is an open-source project dedicated to combating misinformation and p
 **Blockchain Integration**: Truthchain leverages OriginTrail's ChatDKG, a Decentralized Knowledge Graph, for blockchain integration. Verified data, along with its metadata, is stored on the blockchain, creating an immutable and transparent record of verified information.
 
 ## How It Works
-**Data Collection**: Users can use the Truthchain web interface or API to collect data they find online. This can include text, images, videos, or any other digital content.
+**Data Collection**: Users can use the Truthchain web interface or API to collect data they find online.
 
 **Data Submission**: Once collected, users submit the data to Truthchain, along with relevant metadata, such as the source URL, date, and description. Users can also provide additional context or comments to aid the verification process.
 
-**Data Verification**: Truthchain interfaces with Data Validators, external services capable of verifying specific types of data. These Data Validators apply their verification algorithms and techniques to assess the accuracy and credibility of the submitted information.
+**Data Verification**: Truthchain interfaces with Data Validators, that verifying specific types of data. These Data Validators apply their verification algorithms and techniques to assess the accuracy and credibility of the submitted information.
 
 **Digital Signatures**: Once the data passes the verification stage, the user who collected it digitally signs the information. This cryptographic signature serves as a unique identifier and ensures the integrity and authenticity of the data.
 
