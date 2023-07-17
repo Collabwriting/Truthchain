@@ -24,7 +24,7 @@ Truthchain is an open-source project dedicated to combating misinformation and p
 
 **Blockchain Integration**: Verified and signed data, along with its metadata, is stored on the blockchain using OriginTrail's ChatDKG. ChatDKG provides a decentralized knowledge graph, ensuring the immutability and transparency of the verified data.
 
-## Running Truthchain
+## Running Truthchain - `Coming Soon`
 Truthchain is written in Java and can be easily run using Docker. Follow the steps below to run Truthchain:
 
 1. Install Docker on your machine by following the instructions for your specific operating system: Docker Installation
@@ -64,7 +64,7 @@ Our team will review your contribution, provide feedback if necessary, and merge
 Truthchain is released under the [GPL-3.0 License](https://github.com/Collabwriting/Truthchain/blob/main/LICENSE). Feel free to use, modify, and distribute the software in accordance with the terms and conditions of the license.
 
 ## Acknowledgments
-We would like to express our gratitude to the open-source community for their invaluable contributions. Without their dedication and support, Truthchain would not have been possible.
+The **OriginTrail** team's expertise in blockchain technology and their commitment to building decentralized solutions have been instrumental in helping Truthchain create a reliable and transparent system for storing verified data. The integration of ChatDKG into Truthchain's architecture has enhanced the immutability and tamper-proof nature of our platform, ensuring that the verified data remains secure and accessible.
 
 ## Contact Us
 If you have any questions, suggestions, or feedback, please don't hesitate to reach out to us. You can contact the Truthchain team at contact@truthchain.dev or join our community on Discord.
