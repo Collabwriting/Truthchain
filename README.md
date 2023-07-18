@@ -2,7 +2,9 @@
 
 # Truthchain: Fighting Misinformation with Decentralized Truth Verification
 
-Truthchain is an open-source project dedicated to combating misinformation and promoting truth in an increasingly digital and interconnected world. By harnessing the power of blockchain technology, data validators, and user contributions, Truthchain aims to create a decentralized platform where users can collect, verify, and store data, ensuring its authenticity and credibility.
+Truthchain is an open-source project dedicated to combating misinformation and promoting truth in an increasingly digital and interconnected world.
+
+By harnessing the power of blockchain technology, data validators, and user contributions, Truthchain aims to create a decentralized platform where users can collect, verify, and store data, ensuring its authenticity and credibility. This will bring to the forefront quality information, with reputable sources, as a way to build on shared knowledge and individual insights.
 
 ## Key Features
 **Data Collection**: Users can collect data from various online sources, such as news articles, social media posts, or websites, and submit it to Truthchain for verification.
