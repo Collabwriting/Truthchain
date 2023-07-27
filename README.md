@@ -26,6 +26,11 @@ By harnessing the power of blockchain technology, data validators, and user cont
 
 **Blockchain Integration**: Verified and signed data, along with its metadata, is stored on the blockchain using OriginTrail's ChatDKG. ChatDKG provides a decentralized knowledge graph, ensuring the immutability and transparency of the verified data.
 
+## Diagrams
+<img height="350px" src="https://github.com/Collabwriting/Truthchain/assets/9627557/db063a25-e578-48dd-b808-afe4fa2441ea"/>
+<img height="350px" src="https://github.com/Collabwriting/Truthchain/assets/9627557/e07a50e8-cd50-43bb-ba4c-1ef9fec0300d"/>
+
+
 ## Running Truthchain - `Coming Soon`
 Truthchain is written in Java and can be easily run using Docker. Follow the steps below to run Truthchain:
 
