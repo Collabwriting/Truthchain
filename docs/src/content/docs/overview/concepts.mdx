@@ -1,0 +1,51 @@
+---
+title: Concepts
+description: A sort overview of the concepts of the Truthchain System.
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+
+The idea behind Truthchain is to develop simple tool anyone can use to collect information online and verify its accuracy and credibility. This section will give you a brief overview of the concepts behind the Truthchain System.
+
+# Key Actors
+<CardGrid>
+	<Card title="User" icon="magnifier">
+		Investigative Journalist or Citizen Journalist who collects data from various online sources.
+	</Card>
+	<Card title="Truthchain" icon="star">
+		Backend service that collects data from users and sends it to Data Validators for verification.
+	</Card>
+	<Card title="Data Validator" icon="approve-check">
+		A service that verifies the accuracy and credibility of data.
+	</Card>
+	<Card title="Snippet" icon="document">
+		Immutable and transparent record of verified data that is stored on OriginTrail's Decentralized Knowledge Graph.
+	</Card>
+</CardGrid>
+
+# Diagram
+Here's a simple sequence diagram that shows how the key actors interact with each other.
+<img height="350px" src="https://github.com/Collabwriting/Truthchain/assets/9627557/db063a25-e578-48dd-b808-afe4fa2441ea"/>
+
+### Data Collection
+Users can collect data from various online sources, such as news articles, social media posts, or websites, and submit it to Truthchain for verification. This data is known as a Snippet.
+
+After a user collects a Snippet, they submit it to Truthchain for verification. Truthchain then sends the Snippet to a Data Validator for verification.
+
+### Data Verification
+Data Validators are services that verify the accuracy and credibility of data.
+
+Truthchain implements data verification by creating interfaces to other services, known as Data Validators, that can verify the submitted data. These Data Validators employ various techniques to assess the accuracy and credibility of the information.
+
+Data Validators are specific to the type of data and source of the data. Examples of Data Validators include:
+- Web Scraper - verifies data from different websites and web pages
+- Social Media Validator - verifies data from a particular social media platforms
+- YouTube Validator - verifies data from YouTube videos
+
+### ChatDKG Integration
+Verified data, along with its metadata, is stored on the blockchain using OriginTrail's ChatDKG. ChatDKG provides a decentralized knowledge graph, ensuring the immutability and transparency of the verified data.
+
+When a Snippet is verified, Truthchain sends the Snippet to ChatDKG for storage. ChatDKG stores the Snippet on the blockchain, creating an immutable and transparent record of verified information and returning UAL (Universal Asset Locator) for the Snippet.
+
+Learn more about ChatDKG [here](https://docs.origintrail.io/decentralized-knowledge-graph-layer-2/dkg-basic-concepts).

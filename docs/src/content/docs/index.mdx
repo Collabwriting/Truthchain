@@ -1,0 +1,36 @@
+---
+title: Welcome to Truthchain
+description: Fighting Misinformation with Decentralized Truth Verification
+template: splash
+hero:
+  tagline: Fighting Misinformation with Decentralized Truth Verification
+  image:
+    file: ../../assets/smiley.svg
+  actions:
+    - text: Getting Started
+      link: /overview/introduction/
+      icon: right-arrow
+      variant: primary
+    - text: Visit Github
+      link: https://github.com/Collabwriting/Truthchain
+      icon: external
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Our Plan to Fight Misinformation
+
+<CardGrid stagger>
+	<Card title="Highlight & Save" icon="pencil">
+		Collect any data found online and put it onto blockchain. That way information is saved, so even if source is changed or deleted, there's still a proof of it.
+	</Card>
+	<Card title="Verify Information" icon="magnifier">
+		When data is on public blockchain it's verifiable by anyone. So you can be sure that information is not changed or faked.
+	</Card>
+	<Card title="Data Verifiers Plugins" icon="puzzle">
+		Truthchain is developed so it has scaleable plugins for verification of different data types and sources.
+	</Card>
+	<Card title="Read the docs" icon="open-book">
+		Learn more in [the Truthchain Docs](/guides/getting-started/).
+	</Card>
+</CardGrid>
