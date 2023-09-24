@@ -4,12 +4,12 @@
 
 Truthchain is an open-source project dedicated to combating misinformation and promoting truth in an increasingly digital and interconnected world.
 
-By harnessing the power of blockchain technology, data validators, and user contributions, Truthchain aims to create a decentralized platform where users can collect, verify, and store data, ensuring its authenticity and credibility. This will bring to the forefront quality information, with reputable sources, as a way to build on shared knowledge and individual insights.
+By harnessing the power of blockchain technology, data verifiers, and user contributions, Truthchain aims to create a decentralized platform where users can collect, verify, and store data, ensuring its authenticity and credibility. This will bring to the forefront quality information, with reputable sources, as a way to build on shared knowledge and individual insights.
 
 ## Key Features
 **Data Collection**: Users can collect data from various online sources, such as news articles, social media posts, or websites, and submit it to Truthchain for verification.
 
-**Data Verification**: Truthchain implements data verification by creating interfaces to other services, known as Data Validators, that can verify the submitted data. These Data Validators employ various techniques to assess the accuracy and credibility of the information.
+**Data Verification**: Truthchain implements data verification by creating interfaces to other services, known as Data Verifiers, that can verify the submitted data. These Data Verifiers employ various techniques to assess the accuracy and credibility of the information.
 
 **Digital Signatures**: Every piece of data that goes through Truthchain is digitally signed by the user who collected it. These digital signatures serve as proof of the data's origin and integrity.
 
@@ -20,7 +20,7 @@ By harnessing the power of blockchain technology, data validators, and user cont
 
 **Data Submission**: Once collected, users submit the data to Truthchain, along with relevant metadata, such as the source URL, date, and description. Users can also provide additional context or comments to aid the verification process.
 
-**Data Verification**: Truthchain interfaces with Data Validators, that verifying specific types of data. These Data Validators apply their verification algorithms and techniques to assess the accuracy and credibility of the submitted information.
+**Data Verification**: Truthchain interfaces with Data Verifiers, that verifying specific types of data. These Data Verifiers apply their verification algorithms and techniques to assess the accuracy and credibility of the submitted information.
 
 **Digital Signatures**: Once the data passes the verification stage, the user who collected it digitally signs the information. This cryptographic signature serves as a unique identifier and ensures the integrity and authenticity of the data.
 
