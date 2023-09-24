@@ -27,7 +27,7 @@ export default defineConfig({
 							label: 'Architecture',
 							items: [
 								{ label: 'Overview', link: '/overview/architecture/overview' },
-								{ label: 'Data Validators', link: '/overview/architecture/validators' },
+								{ label: 'Data Verifiers', link: '/overview/architecture/verifiers' },
 								{ label: 'Truthchain API', link: '/overview/architecture/api' },
 								{ label: 'JavaScript SDK', link: '/overview/architecture/javascript-sdk' },
 								{ label: 'DKG', link: '/overview/architecture/dkg' },

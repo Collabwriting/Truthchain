@@ -5,17 +5,29 @@ description: A short overview Truthchain's API
 
 Truthchain is the main component of the Truthchain System. It is a backend service with open APIs that allows users to collect data from various online sources and submit it to Truthchain for verification.
 
-### Snippet API ```/snippets```
-The Snippet API allows users to submit Snippets to Truthchain for verification. Snippets are sent to Data Validators for verification and then stored on the blockchain using OriginTrail's Decentralized Knowledge Graph.
+## Snippet API ```/snippets```
+The Snippet API allows users to submit Snippets to Truthchain for verification. Snippets are sent to Data Verifiers for verification and then stored on the blockchain using OriginTrail's Decentralized Knowledge Graph.
 
-#### Submit Snippet ```POST /snippets```
-The Submit Snippet endpoint allows users to submit Snippets to Truthchain for verification. Snippets are sent to Data Validators for verification and then stored on the blockchain using OriginTrail's Decentralized Knowledge Graph.
+### Submit Snippet ```POST /snippets```
+The Submit Snippet endpoint allows users to submit Snippets to Truthchain for verification. Snippets are sent to Data Verifiers for verification and then stored on the blockchain using OriginTrail's Decentralized Knowledge Graph.
 
 ```http
 POST /snippet
 ```
 
-Request body example
+#### Request body
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `title` | `string` | **Required**. The title of the Snippet. |
+| `content` | `string` | **Required**. The content of the Snippet. |
+| `type` | `string` | **Required**. The type of the Snippet. |
+| `source` | `string` | **Required**. The source of the Snippet. |
+| `url` | `string` | **Required**. The URL of the Snippet. |
+| `submittedBy` | `object` | **Required**. The user that submitted the Snippet. |
+| `submittedBy.publicAddress` | `string` | **Required**. The public address of the user that submitted the Snippet. |
+| `submittedBy.signature` | `string` | **Required**. The signature of the user that submitted the Snippet. |
+
+**Request body example**
 ```json
 {
     title: "Fund your v6 testnet node",
@@ -30,7 +42,24 @@ Request body example
 }
 ```
 
-Response body example
+#### Response body
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `uuid` | `string` | The UUID of the Snippet. |
+| `ual` | `string` | The UAL of the Snippet. |
+| `verified` | `boolean` | Whether the Snippet is verified. |
+| `type` | `string` | The type of the Snippet. |
+| `title` | `string` | The title of the Snippet. |
+| `content` | `string` | The content of the Snippet. |
+| `source` | `string` | The source of the Snippet. |
+| `url` | `string` | The URL of the Snippet. |
+| `submittedBy` | `object` | The user that submitted the Snippet. |
+| `submittedBy.publicAddress` | `string` | The public address of the user that submitted the Snippet. |
+| `verifiedBy` | `array` | The verifiers that verified the Snippet. |
+| `verifiedBy.name` | `string` | The name of the verifier. |
+| `verifiedBy.verified` | `boolean` | Whether the verifier verified the Snippet. |
+
+**Response body example**
 ```json
 {
     ...snippet,
@@ -45,11 +74,11 @@ Response body example
             verified: true
         },
         {
-            name: "social-media-validator",
+            name: "social-media-verifier",
             verified: false
         },
         {
-            name: "youtube-validator",
+            name: "youtube-verifier",
             verified: true
         }
     ]
@@ -57,14 +86,36 @@ Response body example
 }
 ```
 
-#### Get Snippet ```GET /snippets/:uuid```
+### Get Snippet ```GET /snippets/:uuid```
 The Get Snippet endpoint allows users to get a Snippet by its UUID.
 
 ```http
 GET /snippet/:uuid
 ```
 
-Response body example
+#### Request parameters
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `uuid` | `string` | **Required**. The UUID of the Snippet to get. |
+
+#### Response body
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `uuid` | `string` | The UUID of the Snippet. |
+| `ual` | `string` | The UAL of the Snippet. |
+| `verified` | `boolean` | Whether the Snippet is verified. |
+| `type` | `string` | The type of the Snippet. |
+| `title` | `string` | The title of the Snippet. |
+| `content` | `string` | The content of the Snippet. |
+| `source` | `string` | The source of the Snippet. |
+| `url` | `string` | The URL of the Snippet. |
+| `submittedBy` | `object` | The user that submitted the Snippet. |
+| `submittedBy.publicAddress` | `string` | The public address of the user that submitted the Snippet. |
+| `verifiedBy` | `array` | The verifiers that verified the Snippet. |
+| `verifiedBy.name` | `string` | The name of the verifier. |
+| `verifiedBy.verified` | `boolean` | Whether the verifier verified the Snippet. |
+
+**Example**
 ```json
 {
     uuid: "b7fa9c63-44f3-4cb1-9ae7-cd24be4fe90b",
@@ -87,11 +138,11 @@ Response body example
             verified: true
         },
         {
-            name: "social-media-validator",
+            name: "social-media-verifier",
             verified: false
         },
         {
-            name: "youtube-validator",
+            name: "youtube-verifier",
             verified: true
         }
     ]

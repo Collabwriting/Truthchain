@@ -7,11 +7,29 @@ OriginTrail's Decentralized Knowledge Graph (DKG) is a decentralized graph datab
 
 Data that is stored to DKG
 
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `@context` | `string` | The context of the Snippet. |
+| `@id` | `string` | The Truthchain Snippet URL containing UUID |
+| `@type` | `string` | "TruthchainSnippet" is used by default |
+| `title` | `string` | The title of the Snippet. |
+| `content` | `string` | The content of the Snippet. |
+| `source` | `string` | The source of the Snippet. |
+| `verified` | `boolean` | Whether the Snippet is verified. |
+| `createdBy` | `object` | The user that created the Snippet. |
+| `createdBy.publicAddress` | `string` | The public address of the user that created the Snippet. |
+| `verifiedBy` | `array` | The verifier that verified the Snippet. |
+| `verifiedBy.@type` | `string` | "TruthchainVerifier" is used by default |
+| `verifiedBy.name` | `string` | The name of the verifier. |
+| `verifiedBy.verified` | `boolean` | Whether the verifier verified the Snippet. |
+
+
+**Example JSON**
 ```json
 {
     '@context': 'https://schema.org',
-    '@id': 'https://docs.origintrail.io/decentralized-knowledge-graph-layer-2/node-setup-instructions/fund-your-v6-testnet-node#:sid:=b7fa9c63-44f3-4cb1-9ae7-cd24be4fe90b&:tid:=0956eb9e-e998-45f9-90f0-086f823a3ea8#:~:text=v6%20testnet%20node-,origintrail%20v6%20testnet%20nodes%20operate%20on%20the%20origintrail%20parachain%20testnet%2C%20and%20therefore%20operate%20with%20test%20tokens.%20for%20a%20node%20to%20be%20operational%2C%20it%20requires%20otp%20and%20trac%20test%20tokens%20for%20otp%20testnet',
-    '@type': 'Snippet',
+    '@id': 'https://truthchain.dev/snippets/ac3edf4e-0b0a-4b0e-8b0a-4b0e8b0a4b0e',
+    '@type': 'TruthchainSnippet',
     'title': 'Fund your v6 testnet node',
     'content': 'OriginTrail v6 testnet nodes operate on the OriginTrail Parachain testnet, and therefore operate with test tokens. For a node to be operational, it requires OTP and TRAC test tokens for OTP testnet',
     'source': 'https://docs.origintrail.io/decentralized-knowledge-graph-layer-2/node-setup-instructions/fund-your-v6-testnet-node',
@@ -22,18 +40,18 @@ Data that is stored to DKG
     },
     'verifiedBy': [
         {
-            '@type': 'Validator',
+            '@type': 'TruthchainVerifier',
             'name': 'web-scraper',
             'verified': true
         },
         {
-            '@type': 'Validator',
-            'name': 'social-media-validator',
+            '@type': 'TruthchainVerifier',
+            'name': 'social-media-verifier',
             'verified': false
         },
         {
-            '@type': 'Validator',
-            'name': 'youtube-validator',
+            '@type': 'TruthchainVerifier',
+            'name': 'youtube-verifier',
             'verified': true
         }
     ]

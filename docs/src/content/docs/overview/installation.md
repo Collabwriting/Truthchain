@@ -9,7 +9,7 @@ Truthchain is currently in development and is not yet ready for production use. 
 Truthchain is written in Java and can be easily run using Docker. Follow the steps below to run Truthchain:
 
 ### Installing Docker 
-Install Docker on your machine by following the instructions for your specific operating system: Docker Installation
+Install Docker on your machine by following the instructions for your specific operating system: Docker Installation Guide (https://docs.docker.com/get-docker/)
 
 ### Cloning the Repository
 Clone the Truthchain repository to your local machine:
