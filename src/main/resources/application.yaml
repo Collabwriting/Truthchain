@@ -1,0 +1,65 @@
+spring:
+  profiles:
+    active: dev
+  jpa:
+    generate-ddl: true
+  devtools:
+    restart.enabled: true
+    livereload.enabled: true
+  docker:
+    compose:
+      lifecycle-management: "start-and-stop"
+
+verifiers:
+  default:
+    enabled: true
+  scraper:
+    enabled: false
+
+---
+# PRODUCTION ENVIRONMENT
+spring:
+  config:
+    activate:
+      on-profile: prod
+  docker:
+    compose:
+      skip.in-tests: false
+      profiles:
+        active: prod
+
+---
+# TEST ENVIRONMENT
+spring:
+  config:
+    activate:
+      on-profile: test
+  docker:
+    compose:
+      skip.in-tests: false
+      profiles:
+        active: test
+
+---
+# DEVELOPMENT ENVIRONMENT
+spring:
+  config:
+    activate:
+      on-profile: dev
+  docker:
+    compose:
+      skip.in-tests: false
+      profiles:
+        active: dev
+
+---
+# INTEGRATION TESTS ENVIRONMENT
+spring:
+  config:
+    activate:
+      on-profile: it
+  docker:
+    compose:
+      skip.in-tests: false
+      profiles:
+        active: it

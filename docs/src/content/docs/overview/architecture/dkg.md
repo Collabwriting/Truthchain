@@ -17,6 +17,7 @@ Data that is stored to DKG
 | `source` | `string` | The source of the Snippet. |
 | `verified` | `boolean` | Whether the Snippet is verified. |
 | `createdBy` | `object` | The user that created the Snippet. |
+| `createdBy.@type` | `string` | "TruthchainUser" is used by default |
 | `createdBy.publicAddress` | `string` | The public address of the user that created the Snippet. |
 | `verifiedBy` | `array` | The verifier that verified the Snippet. |
 | `verifiedBy.@type` | `string` | "TruthchainVerifier" is used by default |

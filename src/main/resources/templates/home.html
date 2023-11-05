@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{fragments/page.html :: head}"/>
+
+    <title>Truthchain API</title>
+</head>
+<body class="body--fill-height">
+    <th:block th:replace="~{fragments/page.html :: navigation}"/>
+
+    <div class="section-wrapper section-wrapper--fill-top">
+        <section class="section section--content">
+            <h1>Welcome to Truthchain API</h1>
+            <p>Truthchain is a blockchain-based platform for storing and verifying data, with a mission to eradicate misinformation</p>
+            To learn more about Truthchain, visit <a href="https://truthchain.dev">truthchain.dev</a>
+        </section>
+    </div>
+
+    <th:block th:replace="~{fragments/page.html :: footer}"/>
+</body>
+</html>
