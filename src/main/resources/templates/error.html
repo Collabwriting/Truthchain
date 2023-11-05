@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <th:block th:replace="fragments/page.html :: head"/>
+
+    <title>Truthchain - Error</title>
+</head>
+<body class="body--fill-height">
+
+    <th:block th:replace="fragments/page.html :: navigation"/>
+
+    <div class="section-wrapper section-wrapper--fill-top">
+        <section class="section section--content">
+            <h1><span th:text="${status}"/> Error</h1>
+            <p>Something went wrong</p>
+        </section>
+    </div>
+
+    <th:block th:replace="fragments/page.html :: footer"/>
+
+</body>
+</html>
