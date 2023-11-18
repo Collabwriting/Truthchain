@@ -10,6 +10,11 @@ spring:
     compose:
       lifecycle-management: "start-and-stop"
 
+dkg:
+  api:
+    url: "http://localhost:7071/api/"
+    key: "dkg-api-key"
+
 verifiers:
   default:
     enabled: true
