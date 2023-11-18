@@ -21,6 +21,9 @@ public abstract class AbstractServiceTest {
     @Autowired
     protected SnippetRepository snippetRepository;
 
+    @Autowired
+    protected DkgService dkgService;
+
     @BeforeEach
     void setUp() {
         snippetRepository.deleteAll();

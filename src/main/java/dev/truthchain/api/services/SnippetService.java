@@ -20,6 +20,9 @@ public class SnippetService {
     @Autowired
     private VerificationService verificationService;
 
+    @Autowired
+    private DkgService dkgService;
+
     /**
      * Creates a snippet object and saves it to the database
      * @param snippet the snippet to create
@@ -30,14 +33,21 @@ public class SnippetService {
 
         validateSnippet(snippet);
 
+        // save snippet to database
         snippet.setId(UUID.randomUUID());
         snippet.setCreatedAt(new Date());
+        snippet.setStatus(Snippet.Status.PENDING);
         snippetRepository.save(snippet);
 
+        // verify snippet
         verificationService.verify(snippet);
 
-        // dkgService.mint(snippet);
-        // snippet.setStatus(Snippet.Status.MINTING);
+        // mark snippet as verified
+        snippet.setStatus(Snippet.Status.VERIFIED);
+        snippetRepository.save(snippet);
+
+        // publish snippet to DKG
+        dkgService.createAsset(snippet);
 
         return snippet;
     }

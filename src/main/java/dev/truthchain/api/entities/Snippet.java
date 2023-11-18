@@ -1,8 +1,6 @@
 package dev.truthchain.api.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
@@ -22,6 +20,28 @@ public class Snippet {
     private String content;
     private String type;
     private String url;
-
     private Date createdAt;
+
+    private String ual;
+
+    @Enumerated(EnumType.STRING)
+    private Status status = Status.PENDING;
+
+    @Enumerated(EnumType.STRING)
+    private StatusError error;
+
+    public enum Status {
+        PENDING,
+        CREATED,
+        VERIFIED,
+        PUBLISHING,
+        PUBLISHED,
+        FAILED
+    }
+
+    public enum StatusError {
+        NOT_VERIFIABLE,
+        NOT_SAVED_TO_DKG,
+    }
+
 }
