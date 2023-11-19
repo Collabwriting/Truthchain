@@ -20,6 +20,61 @@
                     <span th:text="${authority.authority}"></span>
                 </li>
             </ul>
+
+            <p>Here are application settings</p>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Key</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Active Profile</td>
+                    <td>spring.profiles.active</td>
+                    <td th:text="${@environment.getProperty('spring.profiles.active')}"></td>
+                </tr>
+                <tr>
+                    <td>DKG API URL</td>
+                    <td>dkg.api.url</td>
+                    <td th:text="${@environment.getProperty('dkg.api.url')}"></td>
+                </tr>
+                <tr>
+                    <td>DKG API Key</td>
+                    <td>dkg.api.key</td>
+                    <td th:text="${@environment.getProperty('dkg.api.key')}"></td>
+                </tr>
+                <tr>
+                    <td>Default Verifier</td>
+                    <td>verifiers.default.enabled</td>
+                    <td th:text="${@environment.getProperty('verifiers.default.enabled')}"></td>
+                </tr>
+                <tr>
+                    <td>Scraper Verifier</td>
+                    <td>verifiers.scraper.enabled</td>
+                    <td th:text="${@environment.getProperty('verifiers.scraper.enabled')}"></td>
+                </tr>
+                <tr>
+                    <td>Database Engine</td>
+                    <td>spring.datasource.driver-class-name</td>
+                    <td th:text="${@environment.getProperty('spring.datasource.driver-class-name')}"></td>
+                </tr>
+                <tr>
+                    <td>Database URL</td>
+                    <td>spring.datasource.url</td>
+                    <td th:text="${@environment.getProperty('spring.datasource.url') == null ? 'N/A' : @environment.getProperty('spring.datasource.url').substring(0, 5) + '...'}"></td>
+                </tr>
+                <tr>
+                    <td>Database Username</td>
+                    <td>spring.datasource.username</td>
+                    <td th:text="${@environment.getProperty('spring.datasource.username') == null ? 'N/A' : @environment.getProperty('spring.datasource.username').substring(0, 5) + '...'}"></td>
+                </tr>
+                <tr>
+                    <td>Database Password</td>
+                    <td>spring.datasource.password</td>
+                    <td th:text="${@environment.getProperty('spring.datasource.password') == null ? 'N/A' : @environment.getProperty('spring.datasource.password').substring(0, 5) + '...'}"></td>
+                </tr>
+            </table>
+
         </section>
     </div>
 
