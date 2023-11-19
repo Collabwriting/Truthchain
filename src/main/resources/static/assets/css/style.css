@@ -67,6 +67,33 @@ p {
     margin-bottom: 0.5em;
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: table;
+    font-size: 0.75em;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+th, td {
+    padding: 0.5em;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+th {
+    font-weight: 700;
+}
+
 .body--fill-height {
     min-height: 100vh;
     display: flex;
