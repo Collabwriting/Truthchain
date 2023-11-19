@@ -20,6 +20,11 @@
 
 
 <section th:fragment="navigation" class="section-wrapper">
+
+    <div class="navigation-warning" th:if="${@environment.getProperty('admin.password').equals('admin123')}">
+        Your Admin credentials are left on default values. This is a <b>security risk</b>. Please change them by editing the <code>admin.password</code> environmental variable.
+    </div>
+
     <nav class="navigation">
         <a href="/" class="navigation__logo">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1565 340" fill="none">

@@ -37,14 +37,14 @@ public class SnippetService {
         snippet.setId(UUID.randomUUID());
         snippet.setCreatedAt(new Date());
         snippet.setStatus(Snippet.Status.PENDING);
-        snippetRepository.save(snippet);
+        snippet = snippetRepository.save(snippet);
 
         // verify snippet
         verificationService.verify(snippet);
 
         // mark snippet as verified
         snippet.setStatus(Snippet.Status.VERIFIED);
-        snippetRepository.save(snippet);
+        snippet = snippetRepository.save(snippet);
 
         // publish snippet to DKG
         dkgService.createAsset(snippet);

@@ -25,7 +25,7 @@ public class Snippet {
     private String ual;
 
     @Enumerated(EnumType.STRING)
-    private Status status = Status.PENDING;
+    private Status status;
 
     @Enumerated(EnumType.STRING)
     private StatusError error;
