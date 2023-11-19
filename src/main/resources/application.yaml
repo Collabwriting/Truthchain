@@ -21,12 +21,23 @@ verifiers:
   scraper:
     enabled: false
 
+admin:
+  username: admin
+  password: admin123
+
 ---
 # PRODUCTION ENVIRONMENT
 spring:
   config:
     activate:
       on-profile: prod
+
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: ${AZURE_SQLSERVER_URL}
+    username: ${AZURE_SQLSERVER_USERNAME}
+    password: ${AZURE_SQLSERVER_PASSWORD}
+
   docker:
     compose:
       skip.in-tests: false
@@ -39,6 +50,13 @@ spring:
   config:
     activate:
       on-profile: test
+
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: ${AZURE_SQLSERVER_URL}
+    username: ${AZURE_SQLSERVER_USERNAME}
+    password: ${AZURE_SQLSERVER_PASSWORD}
+
   docker:
     compose:
       skip.in-tests: false

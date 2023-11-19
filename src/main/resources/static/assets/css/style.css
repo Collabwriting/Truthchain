@@ -78,6 +78,7 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .section-wrapper--fill-center {
@@ -142,6 +143,16 @@ p {
     display: flex;
     gap: 1em;
     align-items: center;
+}
+
+.navigation-warning {
+    width: 100%;
+    background: red;
+    color: #FFF;
+    text-align: center;
+    padding: 1em;
+    font-size: 12px;
+    margin-bottom: 2em;
 }
 
 .navigation__logo svg {
