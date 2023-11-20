@@ -53,6 +53,17 @@ public class SnippetService {
     }
 
     /**
+     * Reads a snippet from the database
+     * @param id the id of the snippet to read
+     * @return the snippet
+     * @throws NotFoundException if the snippet is not found
+     */
+    @Transactional
+    public Snippet read(UUID id) {
+        return snippetRepository.findById(id).orElseThrow(() -> new NotFoundException("Snippet not found"));
+    }
+
+    /**
      * Validates a snippet object and throws an exception if it is not valid
      * @param snippet the snippet to validate
      */

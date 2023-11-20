@@ -6,23 +6,14 @@ import dev.truthchain.api.services.SnippetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/snippets")
+@RequestMapping("/v1/snippets")
 public class SnippetsController {
 
     @Autowired
     private SnippetService snippetService;
-
-    @Autowired
-    private SnippetRepository snippetRepository;
-
-    @GetMapping
-    public Collection<Snippet> readAll() {
-        return snippetRepository.findAll();
-    }
 
     @PostMapping
     public Snippet create(
@@ -35,8 +26,7 @@ public class SnippetsController {
     public Snippet read(
             @PathVariable UUID id
     ) {
-        // TODO: return snippetService.read(id);
-        return null;
+        return snippetService.read(id);
     }
 
     @PatchMapping("/{id}")

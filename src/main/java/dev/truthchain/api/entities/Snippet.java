@@ -23,6 +23,8 @@ public class Snippet {
     private Date createdAt;
 
     private String ual;
+    private String account;
+    private String signature;
 
     @Enumerated(EnumType.STRING)
     private Status status;
