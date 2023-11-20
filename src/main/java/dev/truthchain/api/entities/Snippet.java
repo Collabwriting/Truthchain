@@ -16,9 +16,14 @@ public class Snippet {
     @Column(name = "id" , columnDefinition="uniqueidentifier")
     private UUID id;
 
+    @Column(columnDefinition = "NVARCHAR")
     private String title;
+
+    @Column(columnDefinition = "NVARCHAR")
     private String content;
     private String type;
+
+    @Column(columnDefinition = "NVARCHAR")
     private String url;
     private Date createdAt;
 
