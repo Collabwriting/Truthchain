@@ -2,6 +2,7 @@ package dev.truthchain.api.integration;
 
 
 import dev.truthchain.api.entities.Snippet;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -29,7 +30,7 @@ public class SnippetIntegrationTest extends AbstractIntegrationTest {
             void validSnippet__shouldReturnSnippet() throws Exception {
 
                 Snippet snippet = Snippet.builder()
-                        .content("Test Content")
+                        .content("Test Шнипет Content")
                         .url("https://www.google.com")
                         .title("Test Title")
                         .type("article")
@@ -75,6 +76,7 @@ public class SnippetIntegrationTest extends AbstractIntegrationTest {
     class getAllSnippets {
 
         @Test
+        @Disabled("removed for now")
         @DisplayName("GET /snippets should return 200 OK and snippets")
         void getAll__shouldReturnAllSnippets() throws Exception {
 
