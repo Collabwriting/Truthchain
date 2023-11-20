@@ -26,7 +26,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/home", "/assets/**").permitAll()
+                        .requestMatchers("/", "/home", "/assets/**", "/snippets").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
@@ -36,7 +36,8 @@ public class SecurityConfig {
                 .logout((logout) -> logout
                         .logoutSuccessUrl("/")
                         .permitAll())
-                .csrf(AbstractHttpConfigurer::disable);
+                .csrf(AbstractHttpConfigurer::disable)
+                .cors(AbstractHttpConfigurer::disable);
 
         return http.build();
     }

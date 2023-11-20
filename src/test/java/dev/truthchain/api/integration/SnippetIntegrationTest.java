@@ -35,7 +35,7 @@ public class SnippetIntegrationTest extends AbstractIntegrationTest {
                         .type("article")
                         .build();
 
-                mockMvc.perform(post("/snippets")
+                mockMvc.perform(post("/v1/snippets")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(snippet))
                                 .with(user("user").password("123123").roles("USER", "ADMIN")))
@@ -61,7 +61,7 @@ public class SnippetIntegrationTest extends AbstractIntegrationTest {
                         .type("article")
                         .build();
 
-                mockMvc.perform(post("/snippets")
+                mockMvc.perform(post("/v1/snippets")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(objectMapper.writeValueAsString(snippet))
                                 .with(user("user").password("123123").roles("USER", "ADMIN")))
@@ -99,7 +99,7 @@ public class SnippetIntegrationTest extends AbstractIntegrationTest {
             snippetRepository.save(snippet1);
             snippetRepository.save(snippet2);
 
-            mockMvc.perform(get("/snippets")
+            mockMvc.perform(get("/v1/snippets")
                             .with(user("user").password("123123").roles("USER", "ADMIN")))
                     .andExpect(status().isOk())
                     .andExpect(content().contentType(MediaType.APPLICATION_JSON))
