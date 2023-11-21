@@ -19,7 +19,7 @@ public class Snippet {
     @Column(columnDefinition = "NVARCHAR")
     private String title;
 
-    @Column(columnDefinition = "NVARCHAR")
+    @Column(columnDefinition = "NVARCHAR MAX")
     private String content;
     private String type;
 
