@@ -4,15 +4,19 @@ import dev.truthchain.api.entities.Snippet;
 import dev.truthchain.api.exceptions.BadRequestException;
 import dev.truthchain.api.exceptions.NotFoundException;
 import dev.truthchain.api.repositories.SnippetRepository;
-import jakarta.transaction.Transactional;
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.UUID;
 
 @Service
 public class SnippetService {
+
+    @Autowired
+    private EntityManager entityManager;
 
     @Autowired
     private SnippetRepository snippetRepository;
@@ -47,6 +51,7 @@ public class SnippetService {
         snippet = snippetRepository.save(snippet);
 
         // publish snippet to DKG
+        entityManager.flush();
         dkgService.createAsset(snippet);
 
         return snippet;
