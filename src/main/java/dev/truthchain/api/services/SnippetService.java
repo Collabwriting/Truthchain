@@ -14,10 +14,7 @@ import java.util.UUID;
 
 @Service
 public class SnippetService {
-
-    @Autowired
-    private EntityManager entityManager;
-
+    
     @Autowired
     private SnippetRepository snippetRepository;
 
@@ -51,7 +48,6 @@ public class SnippetService {
         snippet = snippetRepository.save(snippet);
 
         // publish snippet to DKG
-        entityManager.flush();
         dkgService.createAsset(snippet);
 
         return snippet;
