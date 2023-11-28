@@ -5,6 +5,7 @@ import dev.truthchain.api.entities.Snippet;
 import dev.truthchain.api.exceptions.NotFoundException;
 import dev.truthchain.api.repositories.SnippetRepository;
 import dev.truthchain.api.wrappers.DkgResponse;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -27,10 +28,13 @@ public class DkgService {
     private SnippetRepository snippetRepository;
 
     @Async
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
     public void createAsset(Snippet snippet) {
 
-        // set snippet status to "creating"
-        snippet = snippetRepository.findById(snippet.getId()).orElseThrow( () -> new NotFoundException("Snippet not found"));
+        // get snippet from database
+        snippet = snippetRepository.findById(snippet.getId()).orElseThrow(() -> new NotFoundException("Snippet not found"));
+
+        // set snippet status to "publishing"
         snippet.setStatus(Snippet.Status.PUBLISHING);
         snippetRepository.save(snippet);
 
