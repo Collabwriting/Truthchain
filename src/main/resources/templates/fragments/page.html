@@ -67,12 +67,12 @@
             </a>
 
             <a th:unless="${#authorization.expression('isAuthenticated()')}"
-                 class="navigation__menu-item" href="/profile">
+                 class="navigation__menu-item" href="/admin">
                 Login
             </a>
             <a th:if="${#authorization.expression('isAuthenticated()')}"
-                 class="navigation__menu-item" href="/profile">
-                Profile
+                 class="navigation__menu-item" href="/admin">
+                Admin
             </a>
             <form th:if="${#authorization.expression('isAuthenticated()')}"
                   th:action="@{/logout}" method="post"
