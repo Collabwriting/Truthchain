@@ -34,6 +34,11 @@
                     <td th:text="${@environment.getProperty('spring.profiles.active')}"></td>
                 </tr>
                 <tr>
+                    <td>Version</td>
+                    <td>app.version</td>
+                    <td th:text="${@environment.getProperty('app.version')}"></td>
+                </tr>
+                <tr>
                     <td>DKG API URL</td>
                     <td>dkg.api.url</td>
                     <td th:text="${@environment.getProperty('dkg.api.url')}"></td>
