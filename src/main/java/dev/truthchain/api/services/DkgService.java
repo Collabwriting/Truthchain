@@ -31,27 +31,25 @@ public class DkgService {
     @Transactional(Transactional.TxType.REQUIRES_NEW)
     public void createAsset(Snippet snippet) {
 
-        // get snippet from database
-        snippet = snippetRepository.findById(snippet.getId()).orElseThrow(() -> new NotFoundException("Snippet not found"));
-
-        // set snippet status to "publishing"
-        snippet.setStatus(Snippet.Status.PUBLISHING);
-        snippetRepository.save(snippet);
-
+        // create DKG headers
         HttpHeaders headers = new HttpHeaders();
         headers.set("X-API-KEY", DKG_API_KEY);
         headers.set("Content-Type", "application/json");
 
+        // create DKG asset
         SnippetAsset snippetAsset = new SnippetAsset(snippet);
         HttpEntity<SnippetAsset> request = new HttpEntity<>(snippetAsset, headers);
 
+        // send asset to DKG
         RestTemplate restTemplate = new RestTemplate();
-
         ResponseEntity<DkgResponse> response = restTemplate.postForEntity(DKG_API_URL + "assets", request, DkgResponse.class);
+
+        // get snippet from database
+        snippet = snippetRepository.findById(snippet.getId()).orElseThrow(() -> new NotFoundException("Snippet not found"));
 
         if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
 
-            // set snippet status to "created"
+            // set snippet status to "published"
             snippet.setStatus(Snippet.Status.PUBLISHED);
             snippet.setUal(response.getBody().getUal());
             snippetRepository.save(snippet);
