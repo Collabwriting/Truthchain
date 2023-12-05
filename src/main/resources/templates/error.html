@@ -13,7 +13,7 @@
     <div class="section-wrapper section-wrapper--fill-top">
         <section class="section section--content">
             <h1><span th:text="${status}"/> Error</h1>
-            <p>Something went wrong</p>
+            <span th:text="${message != null ? message : 'Something went wrong'}"/>
         </section>
     </div>
 

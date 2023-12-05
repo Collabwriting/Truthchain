@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <th:block th:replace="fragments/page.html :: head"/>
+    <title>Snippet Preview</title>
+</head>
+<body class="body--fill-height">
+
+    <th:block th:replace="fragments/page.html :: navigation"/>
+
+    <div class="section-wrapper section-wrapper--fill-top">
+        <section class="section section--content">
+            <h1 th:inline="text">Snippet Preview</h1>
+
+            <table>
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td class="cloumn-name">Source</td>
+                    <td>
+                        <a th:href="${snippet.url}"
+                           th:text="${snippet.url}"
+                           target="_blank">
+                            Loading Source...
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cloumn-name">UAL</td>
+                    <td>
+                        <a th:href="${'https://dkg-testnet.origintrail.io/explore?ual=' + snippet.ual}"
+                           th:text="${snippet.ual}"
+                           target="_blank">
+                            No UAL Found
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="cloumn-name">TCID</td>
+                    <td th:text="${snippet.id}"></td>
+                </tr>
+                <tr>
+                    <td class="cloumn-name">Title</td>
+                    <td th:text="${snippet.title}"></td>
+                </tr>
+                <tr>
+                    <td class="cloumn-name">Content</td>
+                    <td th:text="${snippet.content}"></td>
+                </tr>
+                <tr>
+                    <td class="cloumn-name">Author</td>
+                    <td th:text="${snippet.account}"></td>
+                </tr>
+                <tr>
+                    <td class="cloumn-name">Signature</td>
+                    <td th:text="${snippet.signature}"></td>
+                </tr>
+                <tr>
+                    <td class="cloumn-name">Created At</td>
+                    <td th:text="${snippet.createdAt}"></td>
+                </tr>
+                <tr>
+                    <td class="cloumn-name">Status</td>
+                    <td th:text="${snippet.status}"></td>
+                </tr>
+            </table>
+
+        </section>
+    </div>
+
+    <th:block th:replace="fragments/page.html :: footer"/>
+</body>
+</html>
