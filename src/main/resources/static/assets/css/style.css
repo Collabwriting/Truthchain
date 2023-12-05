@@ -87,11 +87,16 @@ th, td {
     text-align: left;
     text-overflow: ellipsis;
     overflow: hidden;
-    white-space: nowrap;
+    word-break: break-word;
 }
 
 th {
     font-weight: 700;
+}
+
+.cloumn-name {
+    word-break: normal;
+    min-width: 100px;
 }
 
 .body--fill-height {
