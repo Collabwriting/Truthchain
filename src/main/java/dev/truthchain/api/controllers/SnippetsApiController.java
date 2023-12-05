@@ -1,7 +1,6 @@
 package dev.truthchain.api.controllers;
 
 import dev.truthchain.api.entities.Snippet;
-import dev.truthchain.api.repositories.SnippetRepository;
 import dev.truthchain.api.services.SnippetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +9,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/v1/snippets")
-public class SnippetsController {
+public class SnippetsApiController {
 
     @Autowired
     private SnippetService snippetService;
