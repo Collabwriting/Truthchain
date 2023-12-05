@@ -24,6 +24,9 @@ public class SnippetService {
     @Autowired
     private DkgService dkgService;
 
+    @Autowired
+    private EntityManager entityManager;
+
     /**
      * Creates a snippet object and saves it to the database
      * @param snippet the snippet to create
@@ -46,6 +49,9 @@ public class SnippetService {
         // mark snippet as verified
         snippet.setStatus(Snippet.Status.VERIFIED);
         snippet = snippetRepository.save(snippet);
+
+        // save changes to database
+        entityManager.flush();
 
         // publish snippet to DKG
         dkgService.createAsset(snippet);
