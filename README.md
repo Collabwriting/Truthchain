@@ -73,6 +73,12 @@ Truthchain is released under the [GPL-3.0 License](https://github.com/Collabwrit
 ## Acknowledgments
 The **OriginTrail** team's expertise in blockchain technology and their commitment to building decentralized solutions have been instrumental in helping Truthchain create a reliable and transparent system for storing verified data. The integration of ChatDKG into Truthchain's architecture has enhanced the immutability and tamper-proof nature of our platform, ensuring that the verified data remains secure and accessible.
 
+ChatDKG is an open framework for efficient search, access, and utilization of trusted knowledge with AI, based on OriginTrail Decentralized Knowledge Graph (DKG) and Knowledge Assets. The ChatDKG framework is designed as an open community project to explore a diverse range of possible applications.
+
+Learn more at:
+
+https://github.com/OriginTrail/ChatDKG
+
 ## Contact Us
 If you have any questions, suggestions, or feedback, please don't hesitate to reach out to us. You can contact the Truthchain team at contact@truthchain.dev or join our community on Discord.
 
