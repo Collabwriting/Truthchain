@@ -33,8 +33,7 @@ public class SnippetsApiController {
             @PathVariable UUID id,
             @RequestBody Snippet snippet
     ) {
-        // TODO: return snippetService.update(id, snippet);
-        return null;
+        return snippetService.update(id, snippet);
     }
 
     @DeleteMapping("/{id}")

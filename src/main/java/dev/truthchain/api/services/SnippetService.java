@@ -44,11 +44,8 @@ public class SnippetService {
         verificationService.verify(snippet);
 
         // mark snippet as verified
-        snippet.setStatus(Snippet.Status.VERIFIED);
+        snippet.setStatus(Snippet.Status.CREATED);
         snippet = snippetRepository.save(snippet);
-
-        // publish snippet to DKG
-        dkgService.createAsset(snippet);
 
         return snippet;
     }
@@ -61,7 +58,54 @@ public class SnippetService {
      */
     @Transactional
     public Snippet read(UUID id) {
-        return snippetRepository.findById(id).orElseThrow(() -> new NotFoundException("Snippet not found"));
+        return snippetRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Snippet not found"));
+    }
+
+    /**
+     * Updates a snippet object and saves it to the database
+     * @param id the id of the snippet to update
+     * @param snippet the snippet to update
+     * @return the updated snippet
+     * @throws NotFoundException if the snippet is not found
+     */
+    @Transactional
+    public Snippet update(UUID id, Snippet snippet) {
+
+        if(snippet.getUal() == null || snippet.getUal().isEmpty())
+            throw new BadRequestException("UAL cannot be empty");
+
+        Snippet existingSnippet = snippetRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Snippet not found"));
+
+        if(existingSnippet.getUal() != null)
+            throw new BadRequestException("UAL cannot be updated");
+
+        existingSnippet.setUal(snippet.getUal());
+        existingSnippet.setStatus(Snippet.Status.PUBLISHED);
+
+        try {
+            verifyOnDKG(existingSnippet);
+            existingSnippet.setStatus(Snippet.Status.VERIFIED);
+
+        } catch (Exception e) {
+            existingSnippet.setError(Snippet.StatusError.NOT_VERIFIED_ON_DKG);
+        }
+
+        return snippetRepository.save(existingSnippet);
+    }
+
+    public void verifyOnDKG(Snippet snippet) {
+
+        // get snippet from the DKG
+        Snippet dkgSnippet = dkgService.readAsset(snippet.getUal());
+
+        // validate that snippets are matching
+        if( !dkgSnippet.getId().equals(snippet.getId()) ||
+                !dkgSnippet.getContent().equals(snippet.getContent()) ||
+                !dkgSnippet.getUrl().equals(snippet.getUrl()) ||
+                !dkgSnippet.getTitle().equals(snippet.getTitle()))
+            throw new BadRequestException("Snippet cannot be updated");
     }
 
     /**

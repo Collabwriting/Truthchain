@@ -6,6 +6,7 @@ import dev.truthchain.api.entities.Snippet;
 import lombok.*;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Getter @Setter
 @AllArgsConstructor @NoArgsConstructor
@@ -49,5 +50,15 @@ public class SnippetAsset {
         this.url = snippet.getUrl();
         this.title = snippet.getTitle();
         this.createdAt = snippet.getCreatedAt();
+    }
+
+    public Snippet toSnippet() {
+        return Snippet.builder()
+                .id(UUID.fromString(this.id.replace("https://api.truthchain.dev/snippets/", "")))
+                .content(this.content)
+                .url(this.url)
+                .title(this.title)
+                .createdAt(this.createdAt)
+                .build();
     }
 }
