@@ -23,7 +23,7 @@ public class Snippet {
     private String content;
     private String type;
 
-    @Column(columnDefinition = "NVARCHAR")
+    @Column(columnDefinition = "NVARCHAR MAX")
     private String url;
     private Date createdAt;
 
@@ -49,6 +49,7 @@ public class Snippet {
     public enum StatusError {
         NOT_VERIFIABLE,
         NOT_SAVED_TO_DKG,
+        NOT_VERIFIED_ON_DKG,
     }
 
 }

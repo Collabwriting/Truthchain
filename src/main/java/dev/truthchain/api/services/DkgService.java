@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 @Service
@@ -60,6 +62,39 @@ public class DkgService {
             snippet.setStatus(Snippet.Status.FAILED);
             snippet.setError(Snippet.StatusError.NOT_SAVED_TO_DKG);
             snippetRepository.save(snippet);
+        }
+    }
+
+    public Snippet readAsset(String ual) {
+
+        // create DKG headers
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("X-API-KEY", DKG_API_KEY);
+        headers.set("Content-Type", "application/json");
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        // encode ual
+        String urlEncodedUal = ual.replace(":", "%3A").replace("/", "%2F");
+
+        try {
+
+            // get asset from DKG
+            RestTemplate restTemplate = new RestTemplate();
+            ResponseEntity<SnippetAsset> response = restTemplate.exchange(
+                    DKG_API_URL + "assets/" + urlEncodedUal,
+                    HttpMethod.GET,
+                    entity,
+                    SnippetAsset.class);
+
+            if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
+                return response.getBody().toSnippet();
+
+            } else {
+                throw new NotFoundException("Snippet asset not found on DKG");
+            }
+
+        } catch (RestClientException e) {
+            throw new NotFoundException("DKG API not reachable");
         }
     }
 }
