@@ -24,6 +24,7 @@
                     <td>
                         <a th:href="${snippet.url}"
                            th:text="${snippet.url}"
+                           id="js-source-link"
                            target="_blank">
                             Loading Source...
                         </a>
@@ -49,7 +50,9 @@
                 </tr>
                 <tr>
                     <td class="cloumn-name">Content</td>
-                    <td th:text="${snippet.content}"></td>
+                    <td th:text="${snippet.content}"
+                        id="js-content">
+                    </td>
                 </tr>
                 <tr>
                     <td class="cloumn-name">Created At</td>
@@ -65,5 +68,52 @@
     </div>
 
     <th:block th:replace="fragments/page.html :: footer"/>
+
+    <script>
+
+        function generateTextFragment(url, content) {
+
+            // if chrome text fragment is present, return the url
+            if (url.includes("#:~:text") && url.split("#:~:text=")[1]) {
+                return url;
+            }
+
+            // remove html
+            let cleanContent = content?.replace(/<\/?[^>]+(>|$)/gi, "");
+
+            // remove ... from the end if it exists (copilot sometimes adds ... to the end of the content)
+            if (cleanContent.endsWith("...")) {
+                cleanContent = cleanContent.substring(0, cleanContent.length - 3);
+            }
+
+            const getFragment = (sentence) => {
+
+                let words = sentence.trim().split(" ");
+
+                let textFragment = encodeURIComponent(words.join(" "));
+
+                // manually encode dashes
+                textFragment = textFragment.replaceAll("-", "%2D");
+
+                return textFragment;
+            }
+
+            let textFragments = "";
+
+            let sentences = cleanContent.split(". ");
+            for (let i = 0; i < sentences.length; i++) {
+                textFragments += i === 0 ? getFragment(sentences[i]) : "&text=" + getFragment(sentences[i]);
+            }
+
+            return url + "#:~:text=" + textFragments;
+        }
+
+        // generate textFragment from content and add it to js-source-link
+        const content = document.getElementById('js-content').innerText;
+        const url = document.getElementById('js-source-link').innerText;
+        const textFragment = generateTextFragment(url, content);
+
+        document.getElementById('js-source-link').setAttribute('href', textFragment);
+    </script>
 </body>
 </html>

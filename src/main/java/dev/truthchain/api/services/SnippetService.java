@@ -95,14 +95,41 @@ public class SnippetService {
         return snippetRepository.save(existingSnippet);
     }
 
+    @Transactional
+    public Snippet verify(String ual) {
+
+        // get snippet from the DKG
+        Snippet dkgSnippet = dkgService.readAsset(ual);
+
+        // get snippet from the database
+        Snippet snippet = snippetRepository.findById(dkgSnippet.getId())
+                .orElseThrow(() -> new NotFoundException("Snippet not found"));
+
+        // validate snippet status
+        if(snippet.getStatus() == Snippet.Status.VERIFIED)
+            return snippet;
+
+        // verify that snippets are similar
+        verifySimilarity(snippet, dkgSnippet);
+
+        // mark snippet as verified
+        snippet.setStatus(Snippet.Status.VERIFIED);
+        return snippetRepository.save(snippet);
+    }
+
     public void verifyOnDKG(Snippet snippet) {
 
         // get snippet from the DKG
         Snippet dkgSnippet = dkgService.readAsset(snippet.getUal());
 
-        // validate that snippets are matching
-        if( !dkgSnippet.getId().equals(snippet.getId()) ||
-                !dkgSnippet.getContent().equals(snippet.getContent()) ||
+        // verify that snippets are similar
+        verifySimilarity(snippet, dkgSnippet);
+    }
+
+    public void verifySimilarity(Snippet snippet, Snippet dkgSnippet) {
+
+        // validate that snippets are similar
+        if( !dkgSnippet.getContent().equals(snippet.getContent()) ||
                 !dkgSnippet.getUrl().equals(snippet.getUrl()) ||
                 !dkgSnippet.getTitle().equals(snippet.getTitle()))
             throw new BadRequestException("Snippet cannot be updated");

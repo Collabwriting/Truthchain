@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/page.html :: head"/>
+
+    <title>Truthchain Login</title>
+</head>
+<body class="body--fill-height">
+    <section th:replace="fragments/page.html :: navigation"></section>
+
+    <div class="section-wrapper section-wrapper--fill-center">
+        <section class="section section--login">
+
+            <form id="js-form" class="form" th:action="@{/snippets/verify}" method="post">
+
+                <h2 class="text-center">Verify Snippet</h2>
+
+                <div class="form__message" th:if="${param.error != null && param.error[0] == 'not-found'}">
+                   // Not a valid Truthchain UAL
+                </div>
+                <div class="form__message" th:if="${param.error != null && param.error[0] == 'bad-request'}">
+                   // Service is currently unavailable
+                </div>
+
+                <label class="form__label">UAL</label>
+                <input class="form__input" type="text" name="ual" placeholder="did:dkg:otp:2043/0x5cac41237127f94c2d21dae0b14bfefa99880630/4463332" required/>
+
+                <input class="form__button" type="submit" value="Verify"/>
+            </form>
+        </section>
+    </div>
+
+    <section th:replace="fragments/page.html :: footer"></section>
+
+    <script>
+        document.getElementById('js-form').addEventListener('submit', function() {
+            document.querySelector('.form__button').setAttribute('disabled', 'disabled');
+            document.querySelector('.form__button').value = 'Verifying...';
+        });
+    </script>
+</body>
+</html>

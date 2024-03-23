@@ -368,6 +368,11 @@ th {
     text-align: center;
     line-height: 1.2;
 }
+.form__button:disabled, .form__button--disabled {
+    background: #ccc;
+    color: #888;
+    cursor: not-allowed;
+}
 .form__button:hover {
     transform: scale(1.05);
 }
@@ -415,6 +420,10 @@ span.form__separator__text {
     background: white;
     position: relative;
     padding: 0px 1em;
+}
+
+.text-center {
+    text-align: center;
 }
 
 
