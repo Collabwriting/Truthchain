@@ -43,4 +43,11 @@ public class SnippetsApiController {
         // TODO: snippetService.delete(id);
     }
 
+    @PostMapping("/verify/{ual}")
+    public Snippet verify(
+            @PathVariable String ual
+    ) {
+        return snippetService.verify(ual);
+    }
+
 }
