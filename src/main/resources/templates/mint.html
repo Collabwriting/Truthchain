@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <th:block th:replace="fragments/page.html :: head"/>
+    <title>Mint Snippet</title>
+</head>
+<body class="body--fill-height">
+
+<th:block th:replace="fragments/page.html :: navigation"/>
+
+<div class="section-wrapper section-wrapper--fill-top">
+    <section class="section section--content">
+        <h1 th:inline="text">Mint Snippet</h1>
+
+        <h3 class="snippet-title"
+            th:text="${snippet.title}"
+            id="js-title"
+        >
+            Snippet Title
+        </h3>
+        <p class="snippet-content"
+            id="js-content"
+            th:text="${snippet.content}">
+            This page displays the details of the snippet. You can view the source of the snippet by clicking on the source link.
+        </p>
+        <span class="snippet-url"
+              th:text="${snippet.url}"
+              th:href="${snippet.url}"
+              id="js-source-link"
+        ></span>
+        <span id="js-created-at"
+              th:text="${snippet.createdAt}"
+              style="display: none;"
+        ></span>
+        <span id="js-id"
+              th:text="${snippet.id}"
+              style="display: none;"
+        ></span>
+
+        <div class="snippet-buttons">
+            <a id="js-cancel-button"
+                th:href="${'/snippets/' + snippet.id}"
+               class="snippet-button">
+                CANCEL
+            </a>
+            <button
+                id="js-mint-button"
+                class="snippet-button snippet-button--mint"
+            >
+                MINT
+            </button>
+        </div>
+
+    </section>
+</div>
+
+<th:block th:replace="fragments/page.html :: footer"/>
+
+<script>
+
+    function generateTextFragment(url, content) {
+
+        // if chrome text fragment is present, return the url
+        if (url.includes("#:~:text") && url.split("#:~:text=")[1]) {
+            return url;
+        }
+
+        // remove html
+        let cleanContent = content?.replace(/<\/?[^>]+(>|$)/gi, "");
+
+        // remove ... from the end if it exists (copilot sometimes adds ... to the end of the content)
+        if (cleanContent.endsWith("...")) {
+            cleanContent = cleanContent.substring(0, cleanContent.length - 3);
+        }
+
+        const getFragment = (sentence) => {
+
+            let words = sentence.trim().split(" ");
+
+            let textFragment = encodeURIComponent(words.join(" "));
+
+            // manually encode dashes
+            textFragment = textFragment.replaceAll("-", "%2D");
+
+            return textFragment;
+        }
+
+        let textFragments = "";
+
+        let sentences = cleanContent.split(". ");
+        for (let i = 0; i < sentences.length; i++) {
+            textFragments += i === 0 ? getFragment(sentences[i]) : "&text=" + getFragment(sentences[i]);
+        }
+
+        return url + "#:~:text=" + textFragments;
+    }
+
+    // generate textFragment from content and add it to js-source-link
+    const content = document.getElementById('js-content').innerText;
+    const url = document.getElementById('js-source-link').getAttribute('href');
+    const textFragment = generateTextFragment(url, content);
+
+    document.getElementById('js-source-link').setAttribute('href', textFragment);
+</script>
+
+<script src='https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js'></script>
+<script src='/assets/js/dkg.min.js'></script>
+<script>
+    window.addEventListener('load', async function () {
+
+        // init DKG
+        const dkg = new DKG({
+            environment: "mainnet",
+            endpoint: "https://nebula.mainnet.truthchain.dev",
+            port: 443,
+            blockchain: {
+                name: "otp:2043"
+            },
+        });
+        const nodeInfo = await dkg.node.info();
+        console.log(nodeInfo);
+
+        // mint snippet
+        document.getElementById('js-mint-button').addEventListener('click', async function () {
+
+            console.log("Minting...");
+
+            // hide cancel button, disable mint button and set its text to "Minting..."
+            document.getElementById('js-cancel-button').style.display = 'none';
+            document.getElementById('js-mint-button').disabled = true;
+            document.getElementById('js-mint-button').innerText = 'Minting...';
+
+            const id = document.getElementById('js-id').innerText;
+            const createdAt = document.getElementById('js-created-at').innerText;
+            const title = document.getElementById('js-title').innerText;
+            const content = document.getElementById('js-content').innerText;
+            const url = document.getElementById('js-source-link').getAttribute('href');
+
+            // create knowledge asset
+            const asset = {
+                '@context': 'https://schema.org/',
+                '@type': 'TruthchainSnippet',
+                '@id': `https://api.truthchain.dev/snippets/${id}`,
+                'title': title,
+                'url': url,
+                'createdAt': createdAt,
+                'content': content
+            };
+
+            // publish asset to DKG
+            const result = await dkg.asset.create({
+                    public: asset,
+                },
+                { epochsNum: 2 }
+            );
+
+            console.log("DKG Result", result);
+
+            const snippetUpdate = {
+                id: id,
+                ual: result.UAL,
+            };
+
+            const response = await fetch(`/snippets/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(snippetUpdate),
+            });
+
+            const updatedSnippet = await response.json();
+            console.log("Updated Snippet", updatedSnippet);
+
+            window.location.href = `/snippets/${id}`;
+        });
+    });
+</script>
+</body>
+</html>

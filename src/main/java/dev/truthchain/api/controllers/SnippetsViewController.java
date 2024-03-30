@@ -33,6 +33,22 @@ public class SnippetsViewController {
         return "snippet";
     }
 
+    @GetMapping("/{id}/mint")
+    public String mint(
+            Model model,
+            @PathVariable UUID id
+    ) {
+
+        var snippet = snippetRepository.findById(id).orElseThrow(() -> new NotFoundException("Snippet not found"));
+
+        if(snippet.getUal() != null) {
+            return "redirect:/snippets/" + snippet.getId();
+        }
+
+        model.addAttribute("snippet", snippet);
+        return "mint";
+    }
+
     @PostMapping("/verify")
     public String verify(
             Model model,
