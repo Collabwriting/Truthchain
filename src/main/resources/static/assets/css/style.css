@@ -426,6 +426,65 @@ span.form__separator__text {
     text-align: center;
 }
 
+.snippet-title {
+    font-size: 1.5em;
+    font-weight: 700;
+    text-align: left;
+}
+
+.snippet-content {
+    font-size: 1em;
+    text-align: left;
+}
+
+.snippet-url {
+    font-size: 0.875em;
+    text-align: left;
+}
+
+.snippet-buttons {
+    display: flex;
+    gap: 1em;
+    margin-top: 1em;
+    width: 100%;
+    justify-content: right;
+}
+
+.snippet-button {
+    color: #000;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 0.5em 1em;
+    border: 2px solid #000;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: #FFF;
+}
+.snippet-button:hover {
+    background: #000;
+    color: #FFF;
+    transform: scale(1.15);
+}
+
+.snippet-button--mint {
+    background: #e4adff;
+    color: #000;
+    max-width: 220px;
+    width: 100%;
+}
+
+.snippet-button:disabled {
+    background: #ccc;
+    color: #888;
+    cursor: not-allowed;
+}
+.snippet-button:disabled:hover {
+    background: #ccc;
+    color: #888;
+    transform: scale(1);
+}
+
 
 @media only screen and (max-width: 780px)  {
 
